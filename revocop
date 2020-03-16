@@ -1,0 +1,51 @@
+<?php
+
+define('ROOT', __DIR__);
+define('DS', DIRECTORY_SEPARATOR);
+define("NS", '\\');
+
+if (file_exists(ROOT . DS . 'Config' . DS . 'config.php')) {
+    require ROOT . DS . 'Config' . DS . 'config.php';
+} elseif (in_array('init', $argv)) {
+    require FRAMEWORK . DS . 'OS/Fallback/config.php';
+} else {
+    die('Please Configure your config file first !');
+}
+
+//Load Defination List
+require FRAMEWORK . DS . 'OS' . DS . 'Bootstrap' . DS . 'Definations.php';
+
+// Load Custom functions
+require OS_DIR . DS . 'ShellBox' . DS . 'Functions.php';
+
+use Framework\DInjector\Singleton;
+use Framework\Reporter\DevReporter;
+use Framework\OS\AutoLoad\AutoLoad;
+use Framework\OS\FancyError\CliErrorHandler;
+
+if (isDebug()) {
+    /**
+     * Lets prepare everything for developer reporting
+     */
+    require FRAMEWORK . DS . 'DInjector' . DS . 'Singleton.php';
+    require FRAMEWORK . DS . 'Reporter' . DS . 'SysReporter.php';
+    require FRAMEWORK . DS . 'Reporter' . DS . 'DevReporter.php';
+
+    $devReporter = new DevReporter(microtime(true), round(memory_get_usage(false) / 1024 / 1024, 2));
+    Singleton::set($devReporter);
+}
+
+// Load Autoload function
+require OS_DIR . DS . 'AutoLoad' . DS . 'Autoload.php';
+
+
+new AutoLoad();
+
+new CliErrorHandler();
+
+$revocop = new Framework\RevoCopCli\Console($argv);
+
+$status = $revocop->execute();
+
+
+exit($status);

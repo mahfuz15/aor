@@ -1,0 +1,14 @@
+#!/bin/sh
+
+ps aux | grep '[r]evocop' > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+    while true
+    do
+	ps aux | grep '[r]evocop' > /dev/null 2>&1
+	if [ $? -ne 0 ]
+	then
+    	    $1 revocop exec:action Cron::cronjobs
+	fi
+    done
+fi

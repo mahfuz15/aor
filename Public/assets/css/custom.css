@@ -1,0 +1,10 @@
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+.home-feature-icons {
+    font-size: 10em;
+}
+.bottom-margin-1 .form-group {
+    margin-bottom: 1px!important;
+}

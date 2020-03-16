@@ -1,0 +1,188 @@
+// utilities
+
+/* padding */
+
+@mixin p($num){
+	padding: $num;
+}
+
+@mixin py($num){
+	padding-top: $num;
+	padding-bottom: $num;
+}
+
+@mixin px($num){
+	padding-left: $num;
+	padding-right: $num;
+}
+
+@mixin pt($num){
+	padding-top: $num;
+}
+
+@mixin pb($num){
+	padding-bottom: $num;
+}
+
+/* margin */
+
+@mixin m($num){
+	margin: $num;
+}
+
+@mixin my($num){
+	margin-top:$num;
+	margin-bottom:$num;
+}
+
+@mixin mx($num){
+	margin-left:$num;
+	margin-right:$num;
+}
+
+@mixin mb($num){
+	margin-bottom:$num;
+}
+
+@mixin mt($num){
+	margin-top:$num;
+}
+
+
+
+
+@mixin anchor-color($color,$hover){
+	a{
+	color:$color;
+		&:hover,&:focus{
+			color:$hover;
+			text-decoration:none;
+			outline:0px;
+			outline-offset:0px;
+		}
+	}
+}
+
+@mixin cursor{
+	cursor:pointer;
+}
+
+@mixin border($wi,$ty,$col){
+	border: $wi $ty $col;
+}
+
+@mixin tagline{
+	position:absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.45);
+}
+
+@mixin social-icon($width,$left,$top){
+	width:$width;
+    background: url('../images/social-icon.jpg') $left $top;
+    opacity: 1.0;
+    height:24px;
+    display:inline-block;
+    border-radius:4px;
+}
+
+@mixin full{
+	height: 100%;
+	width:100%;
+}
+
+
+
+// shadow
+
+@mixin box-shadow($v-offset,$h-offset,$blur,$glow,$color){
+	-webkit-box-shadow: $v-offset $h-offset $blur $glow $color;
+		-moz-box-shadow: $v-offset $h-offset $blur $glow $color;
+		box-shadow: $v-offset $h-offset $blur $glow $color;
+}
+
+@mixin tx-shadow($color){
+	text-shadow: -1px -1px 0 $color;
+}
+
+/* 					Transition  
+============================================================== */
+
+@mixin transition($all,$time,$animation){
+	-webkit-transition: $all $time $animation;
+    -moz-transition: $all $time $animation;
+    -o-transition: $all $time $animation;
+    -ms-transition: $all $time $animation;
+    transition: $all $time $animation;
+}
+
+ /* 				Transfrom
+============================================================== */
+
+
+ @mixin transformrotate($X){
+ 	-webkit-transform:rotate($X);
+ 	-ms-transform:rotate($X);
+ 	-o-transform:rotate($X);
+ 	-moz-transform:rotate($X);
+ 	transform:rotate($X);
+ }
+
+ @mixin transform-scale($X){
+ 	-webkit-transform:scale($X);
+ 	-ms-transform:scale($X);
+ 	-o-transform:scale($X);
+ 	-moz-transform:scale($X);
+ 	transform:scale($X);
+ }
+ @mixin transX($X){
+ 	-webkit-transform:translateX($X);
+ 	-ms-transform:translateX($X);
+ 	-o-transform:translateX($X);
+ 	-moz-transform:translateX($X);
+ 	transform:translateX($X);
+ }
+ @mixin transY($Y){
+ 	-webkit-transform:translateY($Y);
+ 	-ms-transform:translateY($Y);
+ 	-o-transform:translateY($Y);
+ 	-moz-transform:translateY($Y);
+ 	transform:translateY($Y);
+ }
+ @mixin transScale($x,$y){
+ 	-webkit-transform:scale($x,$y);
+ 	-ms-transform:scale($x,$y);
+ 	-o-transform:scale($x,$y);
+ 	-moz-transform:scale($x,$y);
+ 	transform:scale($x,$y);
+ }
+
+@mixin section-title($col){
+	background:$col;
+	font-size: 20px;
+    color: #ffffff;
+    letter-spacing: 5px;
+    padding: 3px 10px 0 10px;
+}
+
+@mixin small-special($colo){
+    background: $colo;
+    border-radius: 10px;
+    padding: 1px 0 0 0;
+}
+
+
+@mixin home-bg{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#29b6e6+0,52cff9+100 */
+	background: rgb(41,182,230); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(41,182,230,1) 0%, rgba(82,207,249,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(41,182,230,1) 0%,rgba(82,207,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(41,182,230,1) 0%,rgba(82,207,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29b6e6', endColorstr='#52cff9',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+

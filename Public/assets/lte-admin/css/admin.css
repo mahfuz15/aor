@@ -1,0 +1,118 @@
+.headtitle{
+  margin-top: 15px;
+  color: #fff;
+}
+.form-horizontal .control-label{
+  /*padding-top: 5px;*/
+}
+
+.form-horizontal span.label{
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px;
+}
+
+.modal-backdrop.in{
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+}
+.modal-error .modal-header, .modal-error .modal-footer {
+  background-color: #d33724 !important;
+}
+.modal-error .modal-body {
+  background-color: #dd4b39 !important;
+}
+.dl-horizontal dt{
+  width: 100px;
+}
+.dl-horizontal dd{
+  margin-left: 120px;
+  margin-bottom: 5px;
+  min-height: 30px;
+}
+.has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
+  color: #a94442;
+}
+textarea{
+  width: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  border: 1px solid #dddddd;
+  padding: 10px;
+}
+
+.modal .modal-body .content-wrapper{
+  margin-left: 0px !important;
+}
+
+.text-xs {
+  font-size: 10px;
+}
+
+.ml-20{
+  margin-left: 20px;
+}
+
+.ml-40{
+  margin-left: 40px;
+}
+
+.ml-60{
+  margin-left: 60px;
+}
+
+.ml-80{
+  margin-left: 80px;
+}
+
+iframe{
+  border: 0;
+}
+
+select.multiselect{
+  min-height: 250px;
+}
+select.multiselect option{
+  padding-left: 10px; 
+}
+select.multiselect option:disabled {
+  color: #3c8dbc;
+  background: #eee;
+  font-weight: bold;
+  padding-left: 5px;
+  border-bottom: 1px solid #aaa;
+  margin: 5px 0; 
+}
+
+ul.assignList{
+  max-height: 400px;
+  overflow: scroll;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 10px;
+}
+
+ul.assignList li{
+  padding: 0;
+  -webkit-padding-start: 0;
+}
+
+ul.assignList li i{
+  padding: 0 5px;
+}
+
+ul.assignList li.list-group-title{
+  color: #3c8dbc;
+  background: #eee;
+  font-weight: bold;
+  padding-left: 5px;
+  border-bottom: 1px solid #aaa;
+  margin: 5px 0; 
+}
+
+ul.assignList li.item-child{
+  padding-left: 0px;
+}
+ul.assignList li.item-grand-child{
+  padding-left: 40px;
+}

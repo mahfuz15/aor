@@ -1,0 +1,122 @@
+https://sandbox.revostack.com:10000/
+root
+r3v0d3vTe@m
+sandbox server er panel er access
+File ta aktu carefully raikhen, ssh er access
+
+
+ssh ec2-user@13.250.32.170 -i common-server.pem
+sudo su <- for sudo access
+sudo su - sandbox <- git use korar jonno
+UCB home folder ->  cd /home/sandbox/public_html/ucb/
+phpmyadmin -> http://sandbox.revostack.com/dbmanager/
+root:r3v0d3vTe@m
+aws er db ta maybe again pathaise
+db ta up korte hobe
+jodi kono problem kore up korte, shan k bolben, shan janae dibe client k
+
+git pull korle obossoe sandbox user er maddhome pull korben
+Noile file ownership change hoe jabe
+
+http://sandbox.revostack.com/atago/
+cd /home/sandbox/public_html/atago/rep/
+git aws git use kore up kora na, manually up kora
+
+kaj ses hoe gele exit exit
+
+/*
+$language['re_name_en'] = 1;
+$language['re_name_it'] = 2;
+$language['re_name_vi'] = 3;
+$language['re_name_tr'] = 4;
+$language['re_name_th'] = 5;
+$language['re_name_us'] = 6;
+$language['re_name_ue'] = 7;
+$language['re_name_pt'] = 8;
+$language['re_name_zh'] = 9;
+$language['re_name_zk'] = 10;
+$language['re_name_ar'] = 11;
+$language['re_name_ru'] = 12;
+$language['re_name_es'] = 13;
+$language['re_name_ja'] = 14;
+$language['re_name_fr'] = 15;
+$language['re_name_de'] = 16;*/
+
+<div class="box-body">
+                            <?php if (!empty($productImages)) { ?>
+
+                                <div class="row">
+                                    <?php foreach ($productImages as $productImage) { ?>
+                                        <input type="hidden" name="product_image_id[]" value="<?=$productImage->id?>">
+                                        <div class="col-sm-8 col-xs-6 text-center" style="margin-bottom: 15px;">
+                                           <div class="col-sm-4">
+                                               <img src="<?= $productImage->image; ?>" class="img-responsive" style="height: 50px; margin: 0 auto; width: auto;max-width: 100%; margin-bottom: 5px;">
+                                           </div>
+                                            <div class="col-sm-8">
+                                                <input type="file" name="product_image[]" class="form-control input-sm">
+                                            </div>
+
+                                            <!--<a href="<?/*= BASE_URL . PANEL; */?>/pwd/productimage/delete/<?/*= $productImage->id; */?>" class="btn btn-warning btn-block btn-xs popup">
+                                                <i class="fa fa-close" aria-hidden="true"></i> Remove
+                                            </a>-->
+                                        </div>
+                                        <div class="col-sm-4 col-xs-6">
+                                            <select name="image_type[]" class="form-control">
+                                                <option value="">-- Select --</option>
+                                                <option value="large"<?= ("large" ===  $productImage->image_type) ? 'selected' : ''; ?>>Large</option>
+                                                <option value="normal"<?= ("normal" ===  $productImage->image_type) ? 'selected' : ''; ?>>Normal</option>
+                                                <option value="small"<?= ("small" ===  $productImage->image_type) ? 'selected' : ''; ?>>Small</option>
+                                                <option value="panel"<?= ("panel" ===  $productImage->image_type) ? 'selected' : ''; ?>>Panel</option>
+                                                <option value="serial"<?= ("serial" ===  $productImage->image_type) ? 'selected' : ''; ?>>Serial No image</option>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                    <?php } ?>
+                                </div>
+                            <?php }
+                          ?>
+                            <div id="img-file-container">
+                                <?php
+                                if (empty($pwdProduct)) {
+                                    ?>
+                                    <div class="form-group">
+                                        <input type="hidden" name="product_image_id[]" value="-1">
+                                        <div class="col-sm-12- col-xs-12">
+                                            <div class="col-sm-7 col-xs-12 validationHolder">
+                                                <input type="file" name="product_image[]" class="form-control">
+                                            </div>
+                                            <div class="col-sm-5 col-xs-12 validationHolder">
+                                                <select name="image_type[]" class="form-control">
+                                                    <option value="">-- Select --</option>
+                                                    <option value="large"
+                                                            <?= ("large" === $this->objval('pwdProduct', 'image_type')) ? 'selected' : ''; ?>>
+                                                        Large
+                                                    </option>
+                                                    <option value="normal"
+                                                            <?= ("normal" === $this->objval('pwdProduct', 'image_type')) ? 'selected' : ''; ?>>
+                                                        Normal
+                                                    </option>
+                                                    <option value="small"
+                                                            <?= ("small" === $this->objval('pwdProduct', 'image_type')) ? 'selected' : ''; ?>>
+                                                        Small
+                                                    </option>
+                                                    <option value="panel"
+                                                            <?= ("panel" === $this->objval('pwdProduct', 'image_type')) ? 'selected' : ''; ?>>
+                                                        Panel
+                                                    </option>
+                                                    <option value="serial"
+                                                            <?= ("serial" === $this->objval('pwdProduct', 'image_type')) ? 'selected' : ''; ?>>
+                                                        Serial No image
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php } ?>
+                            </div>
+                                <button type="button" class="btn btn-primary btn-block btn-xs" id="add_image_button">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add More Image
+                                </button>
+
+                        </div>

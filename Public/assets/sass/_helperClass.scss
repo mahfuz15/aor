@@ -1,0 +1,313 @@
+
+
+.b-0{
+  border: none !important;
+}
+
+.b-r{
+ border-right: 1px solid #eee;
+}
+
+.b-b{
+  border-bottom: 1px solid $dust;
+}
+
+
+.thin{
+  font-weight: 100 !important;
+}
+
+.light{
+  font-weight: 300;
+}
+
+.img-center{
+  margin: 0 auto;
+}
+
+.d-block{
+  display: block;
+}
+
+
+
+
+/* text-color
+==================================================================  */
+.grey{
+  color:$grey;
+}
+
+.tx-tia{
+  color:#7cd31d;
+}
+
+.tx-red{
+  color:$anchor-color;
+}
+
+.text-underline{
+  text-decoration: underline;
+}
+
+/* btn 
+==================================================================  */
+
+.btn{
+  padding: 6px 12px !important;
+  min-width: 120px !important;
+}
+
+.btn-icon{
+  padding: 2px 10px !important;
+  min-width: auto !important;
+  margin: 0;
+}
+
+.btn-sm{
+  padding: 4px 6px !important;
+  min-width: 90px !important;
+  font-size: 14px;
+}
+
+.btn-xs{
+  padding: 2px 6px !important;
+  min-width: 70px !important;
+  font-size: 12px;
+}
+
+.btn-lg{
+  min-width: 180px !important;
+  border-radius: 4px;
+}
+
+.btn-compose{
+  background-color: $anchor-color;
+  border-color:$anchor-color;
+  color:$white-tx !important;
+  &:focus,&:hover{
+    color:$white-tx !important;
+    background-color: $anchor-color-h;
+    border-color:$anchor-color-h;
+  }
+}
+
+.btn-compose-outline{
+  background-color: transparent;
+  border-color:$grey;
+  color:$grey !important;
+  &:focus,&:hover{
+    color:$white-tx !important;
+    background-color: #2d353c;
+    border-color:#2d353c;
+  }
+}
+
+
+
+
+
+.btn-red{
+  color:$anchor-color;
+  border-color:$anchor-color;
+  @include transition(all,0.3s,ease-in-out);
+  &:focus,&:hover{
+    color:$anchor-color-h;
+    border-color:$anchor-color-h;
+  }
+}
+
+.btn-red-bg{
+  background: $anchor-color;
+  color:$white-tx;
+  border-color:$anchor-color;
+  @include transition(all,0.3s,linear);
+  &:focus,&:hover{
+    color:$white-tx !important;
+    background: $anchor-color-h !important;
+    border-color:$anchor-color-h !important;
+  }
+}
+
+
+.btn-rect{
+  border-radius:3px;
+}
+
+
+  /*            Background
+  ================================================================ */
+
+  .blue-bg{
+    background-color: $theme-color !important;
+  }
+
+  .blue-bg-alt{
+    background: #54d4ff !important;
+  }
+  
+  .white-bg{
+    background-color: $white-tx !important;
+  }
+  
+  .light-blue-bg{
+    background-color: $light-blue !important;
+  }
+
+  .pastel-bg{
+    background-color: $pastel-color !important;
+  }
+
+  .night-blue-bg{
+    background-color: $night-blue !important;
+  }
+  
+  .light-grey-bg{
+    background: $light-grey;
+  }
+
+/* Padding 
+================================================================== */
+
+
+.p-0{
+  @include p(0px);
+}
+
+.p-15{
+  @include p(15px);
+}
+.p-20{
+  @include p(20px);
+}
+.p-30{
+  @include p(30px);
+}
+
+// py-axis
+
+.py-30{
+ @include py(30px);
+}
+.py-60{
+ @include py(60px);
+}
+.py-90{
+ @include py(90px);
+}
+
+// px-axis
+
+.px-15{
+  @include px(15px);
+}
+.px-20{
+  @include px(20px);
+}
+.px-30{
+  @include px(30px);
+}
+.px-40{
+  @include px(40px);
+}
+
+.px-50{
+  @include px(50px);
+}
+
+
+
+// Padding top
+
+.pt-30{
+  @include pt(30px);
+}
+.pt-60{
+  @include pt(60px);
+}
+.pt-90{
+  @include pt(90px);
+}
+.pt-250{
+  @include pt(250px);
+}
+
+// padding-bottom
+
+.pb-20{
+  @include pb(20px);
+}
+.pb-30{
+  @include pb(30px);
+}
+.pb-60{
+  @include pb(60px);
+}
+.pb-90{
+  @include pb(90px);
+}
+.pb-250{
+  @include pb(250px);
+}
+
+.pl-0{
+  padding-left: 0 !important;
+}
+
+
+/* margin 
+================================================================== */
+
+.m-0{
+  margin: 0 !important;
+}
+
+.mr-top-10{
+  margin-top: 10px;
+}
+.mr-top-15{
+  margin-top: 15px;
+}
+.mr-btm-15{
+  margin-bottom: 15px;
+}
+.mr-btm-40{
+  margin-bottom: 40px;
+}
+.pdbt-15{
+  padding-bottom: 15px;
+}
+
+.mr-top-btm-15{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
+
+
+
+@media (min-width: 768px){
+.nopadding{
+  padding: 0 !important;
+}
+.nopadding-left{
+  padding-left: 0;
+}
+
+.nopadding-right{
+  padding-right: 0;
+}
+.mr-top-30{
+  margin-top: 30px;
+}
+
+.col-sm-offset-15{
+  margin-left: 11.1111111%;
+}
+}
+
+
+
+
+
