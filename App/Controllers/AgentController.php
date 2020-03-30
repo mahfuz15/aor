@@ -199,7 +199,7 @@ class AgentController extends Controller
                 $this->terminateToken(false, 'id', $tokenObj->id);
 
                 $notifier->successNote('Password has been changed Successfully !');
-                redirect('/');
+                redirect();
             }
         }
         return $this->loadView('profile', 'blank');

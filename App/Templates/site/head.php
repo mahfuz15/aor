@@ -21,30 +21,30 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
 
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="site/images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-        <link rel="stylesheet" href="asset/css/open-iconic-bootstrap.min.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/animate.css<?= VERSION; ?>">
+        <link rel="stylesheet" href="assets/vendor/bootstrap-4.1/css/bootstrap.min.css<?= VERSION; ?>">
+        <link rel="stylesheet" href="assets/css/animate.css<?= VERSION; ?>">
 
         <link rel="stylesheet" href="<?= BASE_URL; ?>assets/css/owl.carousel.min.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/owl.theme.default.min.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/magnific-popup.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/owl.theme.default.min.css<?= VERSION; ?>"> -->
+        <!-- <link rel="stylesheet" href="assets/css/magnific-popup.css<?= VERSION; ?>"> -->
 
-        <link rel="stylesheet" href="site/css/aos.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/aos.css<?= VERSION; ?>"> -->
 
-        <link rel="stylesheet" href="site/css/ionicons.min.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/ionicons.min.css<?= VERSION; ?>"> -->
 
-        <link rel="stylesheet" href="site/css/bootstrap-datepicker.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/jquery.timepicker.css<?= VERSION; ?>">
+        <link rel="stylesheet" href="assets/vendor/datepicker/datepicker3.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/jquery.timepicker.css<?= VERSION; ?>"> -->
 
         <link rel="stylesheet" href="<?php echo ASSETS; ?>vendor/alertify/css/alertify.min.css" />
         <link rel="stylesheet" href="<?php echo ASSETS; ?>vendor/alertify/css/themes/default.min.css" />
 
-        <link rel="stylesheet" href="site/css/flaticon.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/font-awesome-4.7.0/css/font-awesome.min.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/icomoon.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="<?php echo ASSETS; ?>lte-admin/css/custom.css<?= VERSION; ?>">
-        <link rel="stylesheet" href="site/css/style.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/flaticon.css<?= VERSION; ?>"> -->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/css/icomoon.css<?= VERSION; ?>"> -->
+        <!-- <link rel="stylesheet" href="<?php echo ASSETS; ?>lte-admin/css/custom.css<?= VERSION; ?>"> -->
+        <!-- <link rel="stylesheet" href="assets/css/style.css<?= VERSION; ?>"> -->
         
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
