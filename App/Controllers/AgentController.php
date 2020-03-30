@@ -134,7 +134,7 @@ class AgentController extends Controller
                     $agentID = $agent->id;
                 }
                 $notifier->successNote('A Agent Has been updated successfully');
-                redirect(PANEL . 'aor/agent/edit/' . $agentID);
+                redirect(PANEL . '/aor/agent/edit/' . $agentID);
             }else{
                 $agent = $postData;
                 return $this->loadView('form', 'admin')->with(compact('agent', 'edit'));
