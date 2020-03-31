@@ -12,9 +12,4 @@ class HomeController extends Controller {
     public function index() {
         return $this->loadView('index', 'site');
     }
-
-    public function login() {
-        return $this->loadView('login', 'site');
-    }
-
 }

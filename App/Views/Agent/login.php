@@ -20,7 +20,7 @@
             ?>
         <form method="post">
             <div class="form-group has-feedback">
-            <input name="username" type="text" class="form-control" placeholder="Email" autofocus>
+            <input name="email" type="email" class="form-control" placeholder="Email" autofocus>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -30,7 +30,7 @@
             <div class="">
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                    <a class="small float-right mt-3 mb-3" href="<?php echo BASE_URL?>forgot-password">Forgot Password?</a>
+                    <a class="small float-right mt-3 mb-3" href="<?php echo BASE_URL?>agent-forgot-password">Forgot Password?</a>
                 </div>
             </div>
             <?php echo $this->csrfToken(); ?>

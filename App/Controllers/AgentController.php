@@ -169,6 +169,115 @@ class AgentController extends Controller
         return $this->loadView('delete', 'admin')->with(compact('agent'));
     }
 
+    public function login(Request $request)
+    {
+        if ($request->isLoggedIn('agent')) {
+            redirect('');
+        }
+
+        if ($request->isPost()) {
+
+            $email = $request->getPostData('email');
+            $password = $request->getPostData('password');
+            
+            $notifier = new Notification();
+            $validator = new Validator($request->getPostData(), $notifier);
+            $validator->select('email')->required()->email();
+            $validator->select('password')->required()->min(8);
+
+            if ($validator->validate()) {
+                if (($agent = $this->model->findByEmail($email)) !== false) {
+                    if (password_verify($password, $agent->password) !== false) {
+                        $this->model->last_log = DATETIME;
+                        $this->model->session_id = session_id();
+                        $this->model->where('id', $agent->id)->update();
+
+                        $request->setLoggedIn($agent->id, $agent->email, 'agent');
+                        //pr($request->isLoggedIn('agent'));
+                        //exit;
+                        redirect();
+                    }
+                }
+                $notifier->warningNote('Email/Password is invalid !');
+            }
+            redirect('login');
+        } else {
+
+            return $this->loadView('login', 'site');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $uid = $request->loggedID('agent');
+        $this->model->last_log = DATETIME;
+        $this->model->session_id = '';
+        $this->model->where('id', $uid)->update();
+        $request->setLoggedOut('agent');
+        redirect();
+    }
+
+    public function forgotPassword(Request $request) {
+        if ($request->isLoggedIn('agent')) {
+            redirect('');
+        }
+        $notifier = new Notification();
+
+        if ($request->isPost()) {
+            $email = $request->getPostData('email');
+
+            $validator = new Validator($request->getPostData(), $notifier);
+            $validator->select('email')->required()->email();
+
+            if (($validator->validate() === true) && ($agent = $this->model->findByEmail($email)) !== false) {
+                $token = $this->registerToken($agent->email);
+                //Mail to user
+                $this->forgotPassMail($agent->email, $agent->username, $token);
+
+                $notifier->successNote('Recovery mail has been sent to your MailBox.');
+            } else {
+                $notifier->warningNote('Email is invalid !');
+            }
+
+            redirect();
+        }
+        return $this->loadView('forgot', 'site')->with();
+    }
+
+    public function resetPassword(Request $request) {
+        $notifier = new Notification();
+        $email = $request->getParams('email');
+        $token = base64_url_decode($request->getParams('token'));
+
+        $tokenObj = $this->returnTokenObj($token);
+        if (empty($tokenObj)) {
+            $notifier->warningNote('Invalid Token !');
+            redirect();
+        } elseif (($user = $this->model->findByEmail($tokenObj->email)) === false) {
+            $notifier->warningNote('Invalid Token !');
+            redirect();
+        }
+
+        if ($request->isPost()) {
+            $postData = (object) $request->getPostData();
+
+            $validator = new Validator($request->getPostData(), $notifier);
+            $validator->select('password')->required()->min(8);
+            $validator->select('ConfirmPassword')->required()->matchWith($validator->select('password'));
+
+            if ($validator->validate()) {
+                $this->model->password = password_hash($postData->password, PASSWORD_DEFAULT);
+                $update = $this->model->where('email', $email)->update();
+
+                $this->terminateToken(false, 'id', $tokenObj->id);
+
+                $notifier->successNote('Password has been changed Successfully !');
+                redirect('admin/login');
+            }
+        }
+        return $this->loadView('reset', 'admin')->with(compact('email', 'tokenObj'));
+    }
+
     #-- Complete Agent Profile --#
     public function confirmAgent(Request $request){
         $notifier = new Notification();
@@ -187,7 +296,7 @@ class AgentController extends Controller
             $postData = (object) $request->getPostData();
 
             $validator = new Validator($request->getPostData(), $notifier);
-            $validator->select('password')->required();
+            //$validator->select('password')->required();
             $validator->select('password')->required()->min(8);
             $validator->select('ConfirmPassword')->required()->matchWith($validator->select('password'));
 
@@ -199,7 +308,7 @@ class AgentController extends Controller
                 $this->terminateToken(false, 'id', $tokenObj->id);
 
                 $notifier->successNote('Password has been changed Successfully !');
-                redirect();
+                redirect('/login');
             }
         }
         return $this->loadView('profile', 'blank');

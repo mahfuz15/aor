@@ -5,8 +5,10 @@ use Framework\Http\Routing\Router;
 
 $router = new Router();
 
-$router->any('/')->action( 'Home', 'index');
-$router->any('/login')->action( 'Home', 'login');
+$router->any('/')->action('Home', 'index');
+$router->any('/login')->action('Agent', 'login');
+$router->any('/logout')->action('Agent', 'logout');
+$router->any('/agent-forgot-password')->action('Agent', 'forgotPassword');
 
 $router->any('/forgot-password')->action('Admin', 'forgotPassword');
 $router->any('/reset-password/{email:\S+}/{token:\S+}')->action('Admin', 'resetPassword');
