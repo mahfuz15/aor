@@ -95,7 +95,7 @@ $activeStatus = isset($adminStatus[$filterStatus]) ? $adminStatus[$filterStatus]
                                 $sl = $this->values['pagination']->getOffSet() + 1;
                                 if (!empty($admins)) {
                                     foreach ($admins as $admin) {
-                                        $link = BASE_URL.PANEL .'/'.strtolower(SITE).'/user/edit/'. $admin->id;
+                                        $link = BASE_URL.PANEL .'/user/edit/'. $admin->id;
                                         ?>
                                         <tr>
                                             <td><span><?php echo $sl++; ?></span></td>
@@ -119,7 +119,7 @@ $activeStatus = isset($adminStatus[$filterStatus]) ? $adminStatus[$filterStatus]
                                                 <a class="btn btn-info btn-xs color-white" href="<?= $link; ?>">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
-                                                <a class="popup btn btn-danger btn-xs color-white" href="<?php echo BASE_URL.PANEL.'/'.strtolower(SITE).'/user/delete/'.$admin->id; ?>">
+                                                <a class="popup btn btn-danger btn-xs color-white" href="<?php echo BASE_URL.PANEL.'/user/delete/'.$admin->id; ?>">
                                                     <i class="fa fa-trash " aria-hidden="true"></i>
                                                 </a>
                                             </td>

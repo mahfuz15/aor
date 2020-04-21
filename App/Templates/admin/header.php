@@ -1,6 +1,7 @@
 <?php
 $userInfo = $this->loggedUser;
-//pr($userInfo);die();
+// pr($userInfo);
+// die();
 ?>
 <?php
 if ((PANEL === USER_PANEL_NAME && $this->isLoggedIn('user')) || (PANEL == ADMIN_PANEL_NAME && $this->isLoggedIn('admin'))) {

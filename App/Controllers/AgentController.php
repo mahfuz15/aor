@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Framework\Tools\Pagination;
 use Framework\Http\Request\Request;
+use Framework\Http\Response\Response;
 use Framework\Validation\Validator;
 use Framework\Controller\Controller;
 use Framework\Http\Notification\Notification;
@@ -18,6 +19,10 @@ class AgentController extends Controller
         $this->model = $this->loadModel('Agent');
         $roleController = new RoleController();
         $this->roleArray = $roleController->getRoleList();
+    }
+
+    public function index(){
+        redirect('');
     }
 
     public function showSingle(Request $request)
@@ -134,7 +139,7 @@ class AgentController extends Controller
                     $agentID = $agent->id;
                 }
                 $notifier->successNote('A Agent Has been updated successfully');
-                redirect(PANEL . '/aor/agent/edit/' . $agentID);
+                redirect(PANEL . '/agent/edit/' . $agentID);
             }else{
                 $agent = $postData;
                 return $this->loadView('form', 'admin')->with(compact('agent', 'edit'));
@@ -163,7 +168,7 @@ class AgentController extends Controller
 
                 $notifier->successNote('A Agent has been deleted !');
             }
-            redirect(PANEL . 'aor/agents');
+            redirect(PANEL . '/agents');
         }
         
         return $this->loadView('delete', 'admin')->with(compact('agent'));
@@ -200,7 +205,7 @@ class AgentController extends Controller
                 }
                 $notifier->warningNote('Email/Password is invalid !');
             }
-            redirect('login');
+            redirect('agent/login');
         } else {
 
             return $this->loadView('login', 'site');
@@ -214,7 +219,7 @@ class AgentController extends Controller
         $this->model->session_id = '';
         $this->model->where('id', $uid)->update();
         $request->setLoggedOut('agent');
-        redirect();
+        redirect('');
     }
 
     public function forgotPassword(Request $request) {
@@ -244,7 +249,7 @@ class AgentController extends Controller
         return $this->loadView('forgot', 'site')->with();
     }
 
-    public function resetPassword(Request $request) {
+    /*public function resetPassword(Request $request) {
         $notifier = new Notification();
         $email = $request->getParams('email');
         $token = base64_url_decode($request->getParams('token'));
@@ -276,7 +281,7 @@ class AgentController extends Controller
             }
         }
         return $this->loadView('reset', 'admin')->with(compact('email', 'tokenObj'));
-    }
+    }*/
 
     #-- Complete Agent Profile --#
     public function confirmAgent(Request $request){
@@ -313,4 +318,63 @@ class AgentController extends Controller
         }
         return $this->loadView('profile', 'blank');
     }
+
+    #--- Candidate ---#
+    public function candidate(){
+        return $this->loadView('candidate', 'site');
+    }
+
+    #--- API ----#
+
+    public function getRegisterToken(Request $request) {
+        echo json_encode($request->getSession()["csrf_token"] ?? '');
+        die;
+    }
+
+    public function registerAPI(Request $request) {
+        //$postData = $request->getPostData();
+        $postData = $request->getUrlData();
+        Response::json($this->register($postData));
+    }
+
+    public function verifyToken(Request $request) {
+        $retailerID = $request->getUrlData('id');
+        $token = $request->getUrlData('code');
+        $retailer = $this->model->where('id', $retailerID)->andWhere('temptoken', $token)->get();
+        if (!empty($retailer)) {
+            $this->model->temptoken = '';
+            $this->model->verified = 1;
+            $verified = $this->model->where('id', $retailerID)->update();
+            $message = "Hello " . $retailer->name . ", Your phone number has been verified successfully!";
+            $this->sendSMSToRetailer($retailer, $message);
+            Response::json(true);
+        } else {
+            Response::json(false);
+        }
+    }
+
+    public function sendVerificationCode($registrationID) {
+        $randomNumber = rand(100000, 999999);
+        $this->model->temptoken = $randomNumber;
+        $updated = $this->model->where('id', $registrationID)->update();
+        if ($updated !== FALSE) {
+            $message = '';
+            return true;//$this->sendSMS($registrationID, $message);
+        }
+    }
+
+    public function resetTokenAPI(Request $request) {
+        $registrationID = $request->getParams('agent_id');
+        echo json_encode($this->sendVerificationCode($registrationID));
+        die;
+    }
+
+    public function loginAPI(Request $request) {
+        $phone = $request->getUrlData('phone');
+        $pin = $request->getUrlData('pin');
+//        Response::json($this->login($phone, $pin));
+//        die;
+        Response::json($this->login($phone, $pin));
+    }
+
 }

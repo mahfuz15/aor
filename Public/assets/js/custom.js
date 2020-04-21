@@ -214,6 +214,3 @@ $(window).on('resize', function(){
 
 
 
-
-
-

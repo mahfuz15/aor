@@ -29,7 +29,7 @@ $agents = $this->agents;
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-3 col-sm-4 pull-right">
-                                    <a href="<?= BASE_URL . PANEL; ?>/aor/agent/add" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Agent</a>
+                                    <a href="<?= BASE_URL . PANEL; ?>/agent/add" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Agent</a>
                                 </div>
                             </form>
                         </div>

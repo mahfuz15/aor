@@ -18,12 +18,10 @@ class PermissionMiddleWare implements MiddleWareInterface
         if (defined('PANEL') === false) {
             define('PANEL', ADMIN_PANEL_NAME);
         }
-
         if ($request->isLoggedIn('admin')) {
             $adminID = $request->loggedID('admin');
             $permissionController = new PermissionController();
             $data = $this->url();
-            
             if ($data['alias'] == 1) {
                 return $next($request);
             } else {
@@ -65,11 +63,10 @@ class PermissionMiddleWare implements MiddleWareInterface
     public function url()
     {
         $route = explode('/', str_replace('/aor/Public/admin/', '', $_SERVER['REQUEST_URI']));
-        
         if(!empty($route[0]) && !empty($route[1])) {
-            $alias = Inflect::pluralize($route[1]);
-            if (isset($route[2])) {
-                $action = $route[2];
+            $alias = Inflect::pluralize($route[0]);
+            if (isset($route[1])) {
+                $action = $route[1];
             } else {
                 $action = '';
             }

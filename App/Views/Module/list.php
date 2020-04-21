@@ -30,14 +30,14 @@ $modules = $this->modules;
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-search"></i> Filter
                                             </button>
-                                            <a href="<?php echo BASE_URL . PANEL; ?>/<?= strtolower(SITE) ?>/modules/" class="btn btn-default btn-sm">
+                                            <a href="<?php echo BASE_URL . PANEL; ?>/modules/" class="btn btn-default btn-sm">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-3 col-sm-4 pull-right">
-                                    <a href="<?= BASE_URL . PANEL; ?>/<?= strtolower(SITE) ?>/module/add" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Module</a>
+                                    <a href="<?= BASE_URL . PANEL; ?>/module/add" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Module</a>
                                 </div>
                             </form>
                         </div>
@@ -58,7 +58,7 @@ $modules = $this->modules;
                             $sl = $this->pagination->getOffSet() + 1;
                             if (!empty($this->values["modules"])):
                                 foreach ($modules as $module):
-                                    $link = BASE_URL . PANEL.'/'.strtolower(SITE).'/module/edit/'. $module->id;
+                                    $link = BASE_URL . PANEL.'/module/edit/'. $module->id;
                                     ?>
                                     <tr>
                                         <td><span><?php echo $sl++; ?></span></td>
@@ -83,7 +83,7 @@ $modules = $this->modules;
                                             <a class="btn btn-info btn-xs color-white" href="<?= $link; ?>">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                             </a>
-                                            <a class="popup btn btn-danger btn-xs color-white" href="<?= BASE_URL . PANEL; ?>/<?= strtolower(SITE) ?>/module/delete/<?php echo $module->id; ?>">
+                                            <a class="popup btn btn-danger btn-xs color-white" href="<?= BASE_URL . PANEL; ?>/module/delete/<?php echo $module->id; ?>">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>

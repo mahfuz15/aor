@@ -87,11 +87,11 @@ class TemplateHandler extends BaseTemplateHandler {
     }
 
     public function userPreference() {
-        if (PANEL === USER_PANEL_NAME) {
+        /*if (PANEL === USER_PANEL_NAME) {
             $userPreferenceController = new \Controllers\UserPreferenceController();
             return $userPreferenceController->returnByColumn('user_id', $this->request->loggedID());
-        }
-        return false;
+        }*/
+        return true;
     }
 
     public function thousandSep($number) {

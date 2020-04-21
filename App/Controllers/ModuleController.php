@@ -125,7 +125,7 @@ class ModuleController extends Controller
                 }
 
                 $notifier->successNote('A Module Has been updated successfully');
-                redirect(PANEL . '/aor/module/edit/' . $moduleID);
+                redirect(PANEL . '/module/edit/' . $moduleID);
             } else {
                 $module = $postData;
                 return $this->loadView('form', 'admin')->with(compact('module', 'edit'));
@@ -155,7 +155,7 @@ class ModuleController extends Controller
 
                 $notifier->successNote('A Module has been deleted !');
             }
-            redirect(PANEL . '/aor/modules');
+            redirect(PANEL . '/modules');
         }
 
         return $this->loadView('delete', 'admin')->with(compact('module'));

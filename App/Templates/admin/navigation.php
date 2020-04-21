@@ -58,12 +58,12 @@ $userModule = $this->userModulePermission;
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo BASE_URL . PANEL. '/' .strtolower(SITE). '/modules' ;?>">
+                            <a href="<?php echo BASE_URL . PANEL. '/modules' ;?>">
                                 <i class="fa fa-cubes"></i>Modules
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo BASE_URL . PANEL. '/' .strtolower(SITE). '/roles' ;?>">
+                            <a href="<?php echo BASE_URL . PANEL. '/roles' ;?>">
                                 <i class="fa fa-unlock text-yellow"></i>Roles
                             </a>
                         </li>

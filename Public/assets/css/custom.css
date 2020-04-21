@@ -8,3 +8,51 @@
 .bottom-margin-1 .form-group {
     margin-bottom: 1px!important;
 }
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.content-wrapper {
+  margin-left: 0px;
+}
+
+/* -- Skill Tag -- */
+
+.tagsinput {
+  color: #555;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  padding: 0px 0px;
+}
+
+div.tagsinput div input{
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0px auto;
+  color: #555;
+}
+
+.tagsinput .tag {
+  margin: 0px 2.5px;
+}
+
+ul.ui-menu {
+  display: block;
+  list-style: none;
+  width: 50% !important;
+  left: 10.5% !important;
+}
+
+ul.ui-menu li div{
+  padding-left: 15px;
+}
+
+ul.ui-menu li div.ui-state-active {
+  display: block;
+  background-color: #ffffff !important;
+  border: 1px solid #000000 !important;
+}

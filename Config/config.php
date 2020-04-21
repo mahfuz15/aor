@@ -38,7 +38,7 @@ define('FRAMEWORK', ROOT . DS . 'Vendor' . DS . 'RevoInteractive' . DS . 'Framew
 define('CACHE_CLIENT', 'File');
 
 // Panel Info
-define('USER_PANEL_NAME', 'retailer');
+define('USER_PANEL_NAME', 'agent');
 define('ADMIN_PANEL_NAME', 'admin');
 
 define("VERSION", "?version=0.4");

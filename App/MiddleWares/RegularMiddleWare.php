@@ -15,7 +15,6 @@ class RegularMiddleWare implements MiddleWareInterface {
         } else {
             define('PANEL', USER_PANEL_NAME);
         }
-
         return $next($request);
     }
 

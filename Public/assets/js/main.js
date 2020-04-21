@@ -678,3 +678,96 @@ function showNotifications(notificationObject) {
     }
   });
 }
+
+// skills token
+var url = 'http://localhost/aor/Public/api/getSkill/';
+//var skills = [];
+//var unavailableSkill = [];
+
+$(function () {
+  
+  $('#skillTag').tagsInput({
+    placeholder:'Skills',
+    unique: true,
+    autocomplete: {
+      source: function(request, response){
+        //console.log(request.term, url);
+        $.ajax({
+          url: url+request.term,
+          success: function(data){
+            console.log(data);
+            //skills = [];
+            //skills.push(data);
+            response( $.map( data, function( item ) {
+              return {
+                    label: item.name,
+                    value: item.name
+                }
+            }));
+          }
+        })
+      }
+    },
+    //onAddTag:add_unavailableSkills,
+    //onRemoveTag: remove_unavailableSkills,
+  });
+
+  $('.tag-input').addClass('form-control input-sm');
+  console.log("enter");
+  
+  writeValue();
+  
+  $("#countryId").change(function(){
+      console.log($(this).val());
+      $('#location').val($(this).val());
+      $('#state').val('');
+      $('#city').val('');
+      writeValue();
+  });
+
+  $("#stateId").change(function(){
+    console.log($(this).val());
+    $('#state').val($(this).val());
+    $('#city').val('');
+    writeValue();
+  });
+
+  $("#cityId").change(function(){
+    console.log($(this).val());
+    $('#city').val($(this).val());
+    writeValue();
+  });
+});
+
+// fucntion to write Selected location info
+function writeValue(){
+  $('#locationVal').text("Selected Location: " + $('#location').val());
+  $('#stateVal').text("Selected State: " + $('#state').val());
+  $('#cityVal').text("Selected City: " + $('#city').val());
+}
+
+// Get Skills
+// function add_unavailableSkills(input, value){
+//   if(skills == false){
+//     unavailableSkill.push(value);
+//     $('#unavailableSkills').val(unavailableSkill);
+//   } else {
+//     var found = jQuery.grep(skills, function( n, i ) {
+//       return (n.name == value);
+//     });
+//     //console.log(found);
+//     if(found.length <= 0){
+//       unavailableSkill.push(value);
+//       $('#unavailableSkills').val(unavailableSkill);
+//     }
+//   }
+// }
+
+// function remove_unavailableSkills(input, value){
+//   console.log(value);
+//   if(jQuery.inArray(value, unavailableSkill) != -1){
+//     unavailableSkill.splice( $.inArray(value, unavailableSkill), 1 );
+//     $('#unavailableSkills').val(unavailableSkill);
+//   }
+// }
+

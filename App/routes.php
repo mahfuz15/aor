@@ -6,9 +6,15 @@ use Framework\Http\Routing\Router;
 $router = new Router();
 
 $router->any('/')->action('Home', 'index');
-$router->any('/login')->action('Agent', 'login');
-$router->any('/logout')->action('Agent', 'logout');
-$router->any('/agent-forgot-password')->action('Agent', 'forgotPassword');
+#-- Agent --#
+$router->group(['prefix' => '/' . USER_PANEL_NAME], function(Router $router) {
+    $router->any('/')->action('Agent', 'index');
+    $router->any('/login')->action('Agent', 'login')->middleware(['Regular'], true);
+    $router->any('/logout')->action('Agent', 'logout');
+    $router->any('/forgot-password')->action('Agent', 'forgotPassword')->middleware(['Regular'], true);
+    $router->resource('/candidate', 'Candidate', ['regular']);
+    $router->resource('/modules', 'Module', []);
+});
 
 $router->any('/forgot-password')->action('Admin', 'forgotPassword');
 $router->any('/reset-password/{email:\S+}/{token:\S+}')->action('Admin', 'resetPassword');
@@ -37,11 +43,11 @@ $router->group(['prefix' => '/' . ADMIN_PANEL_NAME, 'middlewares' => ['Admin','P
     
     #--- Admin Management ---#
     $router->resource('', 'AdminManage', []);
-    $router->resource('/'.strtolower(SITE).'/user', 'AdminManage', []);
+    $router->resource('/user', 'AdminManage', []);
 
     #--- User Management ---#
-    $router->resource('/'.strtolower(SITE).'/role', 'Role', []);
-    $router->resource('/'.strtolower(SITE).'/module', 'Module', []);
+    $router->resource('/role', 'Role', []);
+    $router->resource('/module', 'Module', []);
     $router->resource('/'.strtolower(SITE).'/permission', 'Permission', []);
 
     #----Permission----#
@@ -52,8 +58,13 @@ $router->group(['prefix' => '/' . ADMIN_PANEL_NAME, 'middlewares' => ['Admin','P
     $router->resource('/'.strtolower(SITE).'/activitylog', 'PwdAdminActivityLog', []);
 
     #----Agents Management----#
-    $router->resource('/'.strtolower(SITE).'/agent', 'Agent', []);
+    $router->resource('/agent', 'Agent', []);
 
+    #----Agents Management----#
+    $router->resource('/candidate', 'Candidate', []);
+
+    #----Skills-----#
+    $router->resource('/skill', 'Skill', []);
 });
 
 
@@ -61,24 +72,28 @@ $router->group(['prefix' => '/' . ADMIN_PANEL_NAME, 'middlewares' => ['Admin','P
 
 $router->group(['prefix' => '/api', 'middleWares' => ['Regular']], function(Router $router) {
 
-    $router->any('/getToken')->action('Retailer', 'registerToken');
-    $router->any('/register')->action('Retailer', 'registerAPI');
-    $router->any('/verify-registration')->action('Retailer', 'verifyToken');
+    #-- Agent --#
+    $router->any('/getToken')->action('Agent', 'getRegisterToken');
+    $router->any('/register')->action('Agent', 'registerAPI');
+    $router->any('/verify-registration')->action('Agent', 'verifyToken');
     
-    $router->any('/resendToken/{retailer_id:\d+}')->action('Retailer', 'resetTokenAPI');
-    $router->any('/login')->action('Retailer', 'loginAPI');
-    $router->any('/logout')->action('Retailer', 'logoutAPI');
+    $router->any('/resendToken/{agent_id:\d+}')->action('Agent', 'resetTokenAPI');
+    $router->any('/login')->action('Agent', 'loginAPI');
+    $router->any('/logout')->action('Agent', 'logoutAPI');
 
-    $router->any('/product/details/english')->action('PwdProductDetail', 'getSpecificProductEnglishDetails');
-    $router->any('/specification')->action('PwdProductSpecification', 'getSpecificationForProductDetails');
-    $router->any('/specification/{product_id:\d+}')->action('PwdProductSpecification', 'thisProductEnLanguageSpecInfo');
+    #-- Skill --#
+    $router->any('/getSkill/{keyword:\S+}')->action('Skill', 'skillByKeyword');
 
-    $router->any('/re')->action('PwdRe', 'getReByreNo');
-    $router->any('/product/option')->action('PwdProductOption', 'getProductOptionsByLngIDProdID');
-    $router->any('/product_option/language_copy')->action('PwdProductOption', 'getProductOptionsForLanguageCopy');
+    // $router->any('/product/details/english')->action('PwdProductDetail', 'getSpecificProductEnglishDetails');
+    // $router->any('/specification')->action('PwdProductSpecification', 'getSpecificationForProductDetails');
+    // $router->any('/specification/{product_id:\d+}')->action('PwdProductSpecification', 'thisProductEnLanguageSpecInfo');
 
-    $router->any('/product_parts/model_copy')->action('PwdProductPart', 'getProductPartsByLngIDProdID');
-    $router->any('/product_parts/language_copy')->action('PwdProductPart', 'getProductPartsForLanguageCopy');
+    // $router->any('/re')->action('PwdRe', 'getReByreNo');
+    // $router->any('/product/option')->action('PwdProductOption', 'getProductOptionsByLngIDProdID');
+    // $router->any('/product_option/language_copy')->action('PwdProductOption', 'getProductOptionsForLanguageCopy');
+
+    // $router->any('/product_parts/model_copy')->action('PwdProductPart', 'getProductPartsByLngIDProdID');
+    // $router->any('/product_parts/language_copy')->action('PwdProductPart', 'getProductPartsForLanguageCopy');
 
 });
 

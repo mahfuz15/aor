@@ -117,7 +117,7 @@ class RoleController extends Controller
                 }
                 $rolePermissionController->updateRolePermission($request,$roleID);
                 $notifier->successNote('A Role Has been updated successfully');
-                redirect(PANEL . '/'.strtolower(SITE).'/role/edit/' . $roleID);
+                redirect(PANEL . '/role/edit/' . $roleID);
             }else{
                 $role = $postData;
                 return $this->loadView('form', 'admin')->with(compact('role', 'edit','rolePermissions','moduleList'));
@@ -147,7 +147,7 @@ class RoleController extends Controller
 
                 $notifier->successNote('A Role has been deleted !');
             }
-            redirect(PANEL . '/'.strtolower(SITE).'/roles');
+            redirect(PANEL . '/roles');
         }
         
         return $this->loadView('delete', 'admin')->with(compact('role'));

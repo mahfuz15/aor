@@ -22,14 +22,13 @@
 
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-
-        <link rel="stylesheet" href="assets/vendor/bootstrap-4.1/css/bootstrap.min.css<?= VERSION; ?>">
+        <!-- <link rel="stylesheet" href="assets/vendor/bootstrap-4.1/css/bootstrap.min.css<?= VERSION; ?>"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/animate.css<?= VERSION; ?>">
 
         <link rel="stylesheet" href="<?= BASE_URL; ?>assets/css/owl.carousel.min.css<?= VERSION; ?>">
         <!-- <link rel="stylesheet" href="assets/css/owl.theme.default.min.css<?= VERSION; ?>"> -->
         <!-- <link rel="stylesheet" href="assets/css/magnific-popup.css<?= VERSION; ?>"> -->
-
         <!-- <link rel="stylesheet" href="assets/css/aos.css<?= VERSION; ?>"> -->
 
         <!-- <link rel="stylesheet" href="assets/css/ionicons.min.css<?= VERSION; ?>"> -->
@@ -45,6 +44,18 @@
         <!-- <link rel="stylesheet" href="assets/css/icomoon.css<?= VERSION; ?>"> -->
         <!-- <link rel="stylesheet" href="<?php echo ASSETS; ?>lte-admin/css/custom.css<?= VERSION; ?>"> -->
         <!-- <link rel="stylesheet" href="assets/css/style.css<?= VERSION; ?>"> -->
+        <!-- bootstrap tokenfield -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css"> -->
+        <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Tags-Input-Autocomplete/src/jquery.tagsinput-revisited.css">
+        
+        <link rel="stylesheet" href="assets/vendor/select2/css/select2.min.css">
+        <link rel="stylesheet" href="assets/lte-admin/css/AdminLTE.css">
+        <link rel="stylesheet" href="assets/lte-admin/css/skins/skin-black.min.css">
+        <link href="assets/lte-admin/css/admin.css" rel="stylesheet">
+        <link href="assets/lte-admin/css/custom.min.css" rel="stylesheet">
+        <link href="assets/lte-admin/css/custom.css" rel="stylesheet">
+        <link href="assets/css/custom.css" rel="stylesheet">
+        
         
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
