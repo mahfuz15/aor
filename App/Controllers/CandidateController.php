@@ -71,8 +71,6 @@ class CandidateController extends Controller
             ->groupBy('candidates.id')
             ->orderBy($order, $sort)->limit($offset, $limit)
             ->getAll(['candidates.*', 'GROUP_CONCAT(DISTINCT skills.name) as skills']);
-        // pr($candidates);
-        // exit;
         return $this->loadView('list', $this->template)->with(compact('candidates', 'pagination'));
     }
 
@@ -120,7 +118,10 @@ class CandidateController extends Controller
                         $this->model->location = $postData->location;
                         $this->model->state = $postData->state;
                         $this->model->city = $postData->city;
+                        $this->model->candidate_name = $postData->candidate_name;
                         $this->model->candidate_email = $postData->candidate_email;
+                        $this->model->candidate_phone = $postData->candidate_phone;
+                        $this->model->job_status = $postData->job_status;
                         $this->model->status = $postData->status;
                         $this->model->updated_at = DATETIME;
                         //pr($file);
@@ -238,5 +239,12 @@ class CandidateController extends Controller
         }
 
         return false;
+    }
+
+    #----------- API --------------------#
+    public function candidateRegisterAPI(Request $request){
+        $name = $request->getPostData('name');
+        $phone = $request->getPostData('phone');
+        $email = $request->getPostData('email');
     }
 }

@@ -1,7 +1,9 @@
 <?php
 $candidate = $this->candidate;
 
+$job_statuses = [0 => 'Pending', 1 => 'Hunting', 2 => 'Working'];
 $statuses = [1 => 'Active', 0 => 'Disabled'];
+
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -53,10 +55,22 @@ $statuses = [1 => 'Active', 0 => 'Disabled'];
 				    <input type="file" name="resume" id="resume">
 				</div>
 			    </div>
+                    <div class="form-group">
+				<label for="candidate_name" class="col-sm-2 control-label">Candidate Name</label>
+				<div class="col-sm-10 col-xs-12 validationHolder">
+				    <input type="text" name="candidate_name" class="form-control input-sm" id="candidate_name" placeholder="Candidate Name" value="<?php echo $this->objval("candidate", "candidate_name"); ?>">
+				</div>
+			    </div>
 						<div class="form-group">
 				<label for="candidate_email" class="col-sm-2 control-label">Candidate Email</label>
 				<div class="col-sm-10 col-xs-12 validationHolder">
-				    <input type="email" name="candidate_email" class="form-control input-sm" id="candidate_email" placeholder="Candidate_email" value="<?php echo $this->objval("candidate", "candidate_email"); ?>">
+				    <input type="email" name="candidate_email" class="form-control input-sm" id="candidate_email" placeholder="Candidate Email" value="<?php echo $this->objval("candidate", "candidate_email"); ?>">
+				</div>
+			    </div>
+                    <div class="form-group">
+				<label for="candidate_phone" class="col-sm-2 control-label">Candidate Phone</label>
+				<div class="col-sm-10 col-xs-12 validationHolder">
+				    <input type="text" name="candidate_phone" class="form-control input-sm" id="candidate_phone" placeholder="Candidate_phone" value="<?php echo $this->objval("candidate", "candidate_phone"); ?>">
 				</div>
 			    </div>
             		    <div class="form-group">
@@ -115,6 +129,22 @@ $statuses = [1 => 'Active', 0 => 'Disabled'];
                             <h3 class="box-title">Extra Settings</h3>
                         </div>
                         <div class="box-body">
+                            <div class="form-group">
+                                <label for="job_status" class="col-sm-2 control-label">Job Status</label>
+                                <div class="col-sm-10 col-xs-12 validationHolder">
+                                    <select name="job_status" class="form-control">
+                                        <?php
+                                        if (!empty($job_statuses)):
+                                            foreach ($job_statuses as $k => $status):
+                                            ?>
+                                            <option value="<?= $k; ?>" <?= ($k === $this->objval('candidate', 'job_status')) ? 'selected' : ''; ?>><?= $status; ?></option>
+                                            <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="status" class="col-sm-2 control-label">Status</label>
                                 <div class="col-sm-10 col-xs-12 validationHolder">

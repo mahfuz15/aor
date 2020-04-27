@@ -39,15 +39,18 @@ $candidates = $this->candidates;
                             <tbody>
                                 <tr>
                                     <th>SL</th>
-                                    <th class="text-center">Id</th>
+                                    <!-- <th class="text-center">Id</th> -->
 <th class="text-center">Title</th>
 <th class="text-center">Skills</th>
-<th class="text-center">Description</th>
+<!-- <th class="text-center">Description</th> -->
 <th class="text-center">Resume_link</th>
 <th class="text-center">Location</th>
 <th class="text-center">State</th>
 <th class="text-center">City</th>
-<th class="text-center">Candidate_email</th>
+<th class="text-center">Candidate Name</th>
+<th class="text-center">Candidate Email</th>
+<th class="text-center">Candidate Phone</th>
+<th class="text-center">Job Status</th>
 <th class="text-center">Status</th>
 <th class="text-center">Joined_by</th>
 <th class="text-center">Joined_at</th>
@@ -61,16 +64,19 @@ $candidates = $this->candidates;
                                     ?>
                                     <tr>
                                         <td><span><?php echo $sl++; ?></span></td>
-                                        <td class="text-center"><?php echo $candidate->id; ?></td>
+                                        <!-- <td class="text-center"><?php echo $candidate->id; ?></td> -->
 											<td class="text-center"><a href="<?= (BASE_URL . PANEL.'/candidate/edit/'. $candidate->id); ?>"><?php echo $candidate->title; ?></a></td>
 											<td class="text-center"><?php echo $candidate->skills; ?></td>
-											<td class="text-center"><?php echo $candidate->description; ?></td>
+											<!-- <td class="text-center"><?php echo $candidate->description; ?></td> -->
 											<td class="text-center"><?php echo $candidate->resume_link; ?></td>
 											<td class="text-center"><?php echo $candidate->location; ?></td>
 											<td class="text-center"><?php echo $candidate->state; ?></td>
 											<td class="text-center"><?php echo $candidate->city; ?></td>
-											<td class="text-center"><?php echo $candidate->candidate_email; ?></td>
-											<td class="text-center"><?php echo $this->statusIcon($candidate->status); ?></td>
+											<td class="text-center"><?php echo $candidate->candidate_name; ?></td>
+                                            <td class="text-center"><?php echo $candidate->candidate_email; ?></td>
+                                            <td class="text-center"><?php echo $candidate->candidate_phone; ?></td>
+											<td class="text-center"><?php echo $candidate->job_status; ?></td>
+                                            <td class="text-center"><?php echo $this->statusIcon($candidate->status); ?></td>
 											<td class="text-center"><?php echo $candidate->joined_by; ?></td>
 											<td class="text-center"><?php echo $candidate->joined_at; ?></td>
 											<td class="text-center"><?php echo $candidate->updated_at; ?></td>

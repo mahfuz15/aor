@@ -13,7 +13,10 @@ class CandidateModel extends Model
 	 * @property string $location
 	 * @property string $state
 	 * @property string $city
+	 * @property string $candidate_name
 	 * @property string $candidate_email
+	 * @property string $candidate_phone
+	 * @property int $job_status
 	 * @property int $status
 	 * @property int $joined_by
 	 * @property string $joined_at
@@ -29,7 +32,10 @@ class CandidateModel extends Model
 		'location' => 'string',
 		'state' => 'string',
 		'city' => 'string',
+		'candidate_name' => 'string',
 		'candidate_email' => 'string',
+		'candidate_phone' => 'string',
+		'job_status' => 'int',
 		'status' => 'int',
 		'joined_by' => 'int',
 		'joined_at' => 'string',
