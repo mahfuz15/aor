@@ -70,7 +70,7 @@ $router->group(['prefix' => '/' . ADMIN_PANEL_NAME, 'middlewares' => ['Admin','P
 
 #----API CONTROL----#
 
-$router->group(['prefix' => '/api', 'middleWares' => ['Regular']], function(Router $router) {
+$router->group(['prefix' => '/api', 'middlewares' => ['api']], function(Router $router) {
 
     #-- Agent --#
     $router->any('/getToken')->action('Agent', 'getRegisterToken');
@@ -81,8 +81,14 @@ $router->group(['prefix' => '/api', 'middleWares' => ['Regular']], function(Rout
     $router->any('/login')->action('Agent', 'loginAPI');
     $router->any('/logout')->action('Agent', 'logoutAPI');
 
+    #-- Candidate -- #
+    $router->post('/addCandidate')->action('Candidate', 'candidateRegisterAPI');
+    
     #-- Skill --#
     $router->any('/getSkill/{keyword:\S+}')->action('Skill', 'skillByKeyword');
+
+    
+
 
     // $router->any('/product/details/english')->action('PwdProductDetail', 'getSpecificProductEnglishDetails');
     // $router->any('/specification')->action('PwdProductSpecification', 'getSpecificationForProductDetails');
@@ -94,8 +100,7 @@ $router->group(['prefix' => '/api', 'middleWares' => ['Regular']], function(Rout
 
     // $router->any('/product_parts/model_copy')->action('PwdProductPart', 'getProductPartsByLngIDProdID');
     // $router->any('/product_parts/language_copy')->action('PwdProductPart', 'getProductPartsForLanguageCopy');
-
+    $router->any('/test')->action('Test', 'test');
 });
 
-$router->any('/test')->action('Test', 'test');
 return $router->dispatch();

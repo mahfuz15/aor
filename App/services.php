@@ -9,7 +9,7 @@ return [
         ],
         'api' => [
             Framework\Http\MiddleWare\CleanPost::class,
-            \MiddleWares\CORSMiddleWare::class
+            MiddleWares\CORSMiddleWare::class
         ]
     ]
 ];

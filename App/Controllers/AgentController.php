@@ -332,9 +332,30 @@ class AgentController extends Controller
     }
 
     public function registerAPI(Request $request) {
-        //$postData = $request->getPostData();
-        $postData = $request->getUrlData();
-        Response::json($this->register($postData));
+        $email = $request->getPostData('email');
+        $password = $request->getPostData('pass');
+        //$token = $request->getUrlData('token');
+
+        $notifier = new Notification();
+        $validator = new Validator($request->getPostData(), $notifier);
+        $validator->select('email')->required()->email()->unique($this->model, 'email');
+        $validator->select('pass')->required()->min(8);
+        $validator->select('ConfirmPass')->required()->matchWith($validator->select('pass'));
+
+        $feedback = new \stdClass;
+        
+        if ($validator->validate()) {
+            if (($agent = $this->model->findByEmail($email)) === false) {
+                // 
+            } else {
+                $feedback->status = "fail";
+                $feedback->message = "Email already exist!";
+            }
+        } else {
+            $feedback->status = "fail";
+            $feedback->message = "Email/Password is invalid!";
+        }
+        Response::json($feedback);
     }
 
     public function verifyToken(Request $request) {
@@ -369,12 +390,91 @@ class AgentController extends Controller
         die;
     }
 
+    // public function loginAPI(Request $request) {
+    //     $email = $request->getPostData('email');
+    //     $password = $request->getPostData('pass');
+    //     //$token = $request->getUrlData('token');
+
+    //     $notifier = new Notification();
+    //     $validator = new Validator($request->getPostData(), $notifier);
+    //     $validator->select('email')->required()->email();
+    //     $validator->select('pass')->required()->min(8);
+    //     $feedback = new \stdClass;
+        
+    //     if ($validator->validate()) {
+    //         if (($agent = $this->model->findByEmail($email)) !== false) {
+    //             if (password_verify($password, $agent->password) !== false) {
+    //                 $this->model->last_log = DATETIME;
+    //                 $this->model->session_id = session_id();
+    //                 $this->model->where('id', $agent->id)->update();
+                    
+    //                 $feedback->status = "success";
+    //                 $feedback->message = "Login success!";
+    //                 $feedback->data = $this->model->findByEmail($email);
+    //             }else {
+    //                 $feedback->status = "fail";
+    //                 $feedback->message = "Worng password!";
+    //             }
+    //         } else {
+    //             $feedback->status = "fail";
+    //             $feedback->message = "Worng email address!";
+    //         }
+    //     } else {
+    //         $feedback->status = "fail";
+    //         $feedback->message = "Email/Password is invalid!";
+    //     }
+    //     Response::json($feedback);
+    // }
+
     public function loginAPI(Request $request) {
-        $phone = $request->getUrlData('phone');
-        $pin = $request->getUrlData('pin');
-//        Response::json($this->login($phone, $pin));
-//        die;
-        Response::json($this->login($phone, $pin));
+        
+        $params = json_decode(file_get_contents('php://input'),true);
+        
+        $email = $params['email'];
+        $password = $params['pass'];
+
+        $feedback = new \stdClass;
+        
+        if (($agent = $this->model->findByEmail($email)) !== false) {
+            if (password_verify($password, $agent->password) !== false) {
+                $this->model->last_log = DATETIME;
+                $this->model->session_id = session_id();
+                $this->model->where('id', $agent->id)->update();
+                
+                $feedback->status = "success";
+                $feedback->message = "Login success!";
+                $feedback->data = $this->model->findByEmail($email);
+            }else {
+                $feedback->status = "fail";
+                $feedback->message = "Worng password!";
+                $feedback->data = $password;
+            }
+        } else {
+            $feedback->status = "fail";
+            $feedback->message = "Worng email address!";
+            $feedback->data = $email;
+        }
+        
+        Response::json($feedback);
+    }
+
+    public function logoutAPI(Request $request)
+    {
+        $uid = $request->getPostData('uid');
+        
+        $feedback = new \stdClass;
+        
+        if($uid === false) {
+            $feedback->status = "fail";
+            $feedback->message = "User not found!";
+        } else {
+            $this->model->last_log = DATETIME;
+            $this->model->session_id = '';
+            $this->model->where('id', $uid)->update();
+            $feedback->status = "success";
+            $feedback->message = "Successfully logged out!";
+        }
+        Response::json($feedback);
     }
 
 }
