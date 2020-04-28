@@ -82,7 +82,7 @@ $router->group(['prefix' => '/api', 'middlewares' => ['api']], function(Router $
     $router->any('/logout')->action('Agent', 'logoutAPI');
 
     #-- Candidate -- #
-    $router->post('/addCandidate')->action('Candidate', 'candidateRegisterAPI');
+    $router->any('/addCandidate')->action('Candidate', 'candidateRegisterAPI');
     
     #-- Skill --#
     $router->any('/getSkill/{keyword:\S+}')->action('Skill', 'skillByKeyword');

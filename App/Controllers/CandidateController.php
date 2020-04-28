@@ -7,6 +7,7 @@ use Framework\Http\Uploader\Uploader;
 use Framework\Http\Uploader\File;
 use Framework\Tools\Pagination;
 use Framework\Http\Request\Request;
+use Framework\Http\Response\Response;
 use Framework\Validation\Validator;
 use Framework\Controller\Controller;
 use Framework\Http\Notification\Notification;
@@ -236,6 +237,7 @@ class CandidateController extends Controller
         if (file_exists($resumePath)) {
             $this->model->resume_link = str_replace(ROOT . DS . PUBLIC_DIR . DS, '', $resumePath);
             $this->model->where('id', $candidate->id)->update();
+            return true;
         }
 
         return false;
@@ -243,8 +245,53 @@ class CandidateController extends Controller
 
     #----------- API --------------------#
     public function candidateRegisterAPI(Request $request){
-        $name = $request->getPostData('name');
-        $phone = $request->getPostData('phone');
-        $email = $request->getPostData('email');
+        // $uploader = new Uploader();
+        // $file = $uploader->file("resume");
+        // $this->feedback("test", "test success", $file->details());
+        // exit;
+        $agent_id = $request->getPostData('uid');
+        $candidate_name = $request->getPostData('name');
+        $candidate_phone = $request->getPostData('phone');
+        $candidate_email = $request->getPostData('email');
+        if(($candidate = $this->model->where('candidate_email', $candidate_email)->get()) === false){
+            
+            $this->model->resume_link = "";
+            $this->model->candidate_name = $candidate_name;
+            $this->model->candidate_email = $candidate_email;
+            $this->model->candidate_phone = $candidate_phone;
+            $this->model->job_status = 0;
+            $this->model->status = 1;
+            $this->model->joined_by = $agent_id;
+            $this->model->joined_at = DATETIME;
+            $this->model->updated_at = DATETIME;
+            $candidateID = $this->model->insert();
+            $candidate = (object) array('id' => $candidateID, 'resume_link' => "");
+            if($candidateID != false){
+                $uploader = new Uploader();
+                $file = $uploader->file('resume');
+                if($file->size > 0 && $file->tmp_name != "") {
+                    if($this->uploadResume($file, $candidate)){
+                        $this->feedback("success", "Candidate registration successful!", $this->model->findByID($candidateID));
+                    } else {
+                        $this->feedback("fail", "Resume upload failed!");
+                    }
+                } else {
+                    $this->feedback("fail", "Resume file not found!");
+                }
+            } else {
+                $this->feedback("fail", "Candidate registration failed!");
+            }
+        } else {
+            $this->feedback("fail", "Candidate already exist!");
+        }
+    }
+
+    protected function feedback($status, $message, $data = false) {
+        $feedback = new \stdClass;
+        $feedback->status = $status;
+        $feedback->message = $message;
+        if($data) $feedback->data = $data;
+        
+        Response::json($feedback);
     }
 }

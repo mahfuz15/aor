@@ -433,29 +433,20 @@ class AgentController extends Controller
         $email = $params['email'];
         $password = $params['pass'];
 
-        $feedback = new \stdClass;
-        
         if (($agent = $this->model->findByEmail($email)) !== false) {
             if (password_verify($password, $agent->password) !== false) {
                 $this->model->last_log = DATETIME;
                 $this->model->session_id = session_id();
                 $this->model->where('id', $agent->id)->update();
                 
-                $feedback->status = "success";
-                $feedback->message = "Login success!";
-                $feedback->data = $this->model->findByEmail($email);
+                $this->feedback("success", "Login success!", $this->model->findByEmail($email));
             }else {
-                $feedback->status = "fail";
-                $feedback->message = "Worng password!";
-                $feedback->data = $password;
+                $this->feedback("fail", "Worng password!", $password);
             }
         } else {
-            $feedback->status = "fail";
-            $feedback->message = "Worng email address!";
-            $feedback->data = $email;
+            $this->feedback("fail", "Worng email address!", $email);
         }
         
-        Response::json($feedback);
     }
 
     public function logoutAPI(Request $request)
@@ -474,6 +465,15 @@ class AgentController extends Controller
             $feedback->status = "success";
             $feedback->message = "Successfully logged out!";
         }
+        Response::json($feedback);
+    }
+
+    protected function feedback($status, $message, $data = false) {
+        $feedback = new \stdClass;
+        $feedback->status = $status;
+        $feedback->message = $message;
+        if($data) $feedback->data = $data;
+        
         Response::json($feedback);
     }
 
